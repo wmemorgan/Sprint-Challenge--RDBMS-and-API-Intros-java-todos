@@ -1,6 +1,7 @@
 package com.lambda.todoapp.services;
 
 import com.lambda.todoapp.models.User;
+import com.lambda.todoapp.views.UserCountTodos;
 
 import java.util.List;
 
@@ -23,6 +24,9 @@ public interface UserService {
      * @return The User object you seek
      */
     User findUserById(long id);
+
+    List<UserCountTodos> getUserCountTodos();
+
 
     /**
      * Given a complete user object, saves that user object in the database.

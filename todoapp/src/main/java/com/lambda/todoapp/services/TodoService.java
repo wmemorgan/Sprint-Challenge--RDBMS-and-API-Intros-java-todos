@@ -1,7 +1,6 @@
 package com.lambda.todoapp.services;
 
 import com.lambda.todoapp.models.Todo;
-import com.lambda.todoapp.models.User;
 
 import java.util.List;
 

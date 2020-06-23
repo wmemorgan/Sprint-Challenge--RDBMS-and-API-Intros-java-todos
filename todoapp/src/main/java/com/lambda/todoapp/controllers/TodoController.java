@@ -16,15 +16,28 @@ import javax.validation.Valid;
 public class TodoController {
 
     /**
-     * Using the Todo service to process user data
+     * Using the Todo service to process todo data
      */
     @Autowired
     TodoService todoService;
 
+    /**
+     * Using the User service to process todo data
+     */
     @Autowired
     UserService userService;
 
-    @PostMapping(value = "/user/{userid}", consumes = {"application/json"})
+    /**
+     * Given a complete User Object, create a new User record and accompanying telephone records
+     * and animal records.
+     * <br> Example: <a href="http://localhost:2019/todos/todo">http://localhost:2019/todos/todo</a>
+     *
+     * @param todo A Todo object to containing task description.
+     * @param userid User id associated with the task  
+     * @return HttpStatus
+     * @see UserService#save(User) UserService.save(User)
+     */
+    @PostMapping(value = "/todo/{userid}", consumes = {"application/json"})
     public ResponseEntity<?> addNewTodo(@Valid @RequestBody Todo todo,
                                         @PathVariable long userid) {
 
@@ -37,8 +50,18 @@ public class TodoController {
 
     }
 
+    /**
+     * Updates the todo record associated with the given id with the provided data. Only the provided fields are affected.
+     * <br> Example: <a href="http://localhost:2019/todos/todo/7">http://localhost:2019/todos/todo/7</a>
+     *
+     * @param todoid The primary key of the todo you wish to update.
+     * @return A status of OK
+     * @see TodoService#update(Todo, long)  TodoService.update(Todo, long)
+     */
     @PatchMapping(value = "/todo/{todoid}")
     public ResponseEntity<?> completeTodo(@PathVariable long todoid) {
+
+        // Prevent marking complete a previously completed task
         if (todoService.findTodoById(todoid).isCompleted()) {
             String msg = "Task is already complete";
 

@@ -2,7 +2,9 @@ package com.lambda.todoapp.services;
 
 import com.lambda.todoapp.models.Todo;
 import com.lambda.todoapp.models.User;
+import com.lambda.todoapp.repositories.TodoRepository;
 import com.lambda.todoapp.repositories.UserRepository;
+import com.lambda.todoapp.views.UserCountTodos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    TodoRepository todoRepository;
 
     @Override
     public List<User> findAll() {
@@ -34,6 +39,17 @@ public class UserServiceImpl implements UserService {
     public User findUserById(long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User " + id + " not found"));
+    }
+
+    @Override
+    public List<UserCountTodos> getUserCountTodos() {
+//        List<UserCountTodos> userList = new ArrayList<>();
+
+//        userRepository.getUserCountTodos()
+//                .iterator()
+//                .forEachRemaining(userList::add);
+
+        return userRepository.getUserCountTodos();
     }
 
     @Override

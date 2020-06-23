@@ -69,12 +69,9 @@ public class UserController {
      * @see UserRepository#getUserCountTodos() UserRepository.getUserCountTodos()
      */
     @GetMapping(value = "/users/todos", produces = {"applicaiton/json"})
-    public ResponseEntity<?> listUsersOpenTodos() {
-        List<UserCountTodos> userList = new ArrayList<>();
+    public ResponseEntity<?> getUserCountTodos() {
 
-            userRepository.getUserCountTodos()
-                    .iterator()
-                    .forEachRemaining(userList::add);
+        List<UserCountTodos> userList = userRepository.getUserCountTodos();
 
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }

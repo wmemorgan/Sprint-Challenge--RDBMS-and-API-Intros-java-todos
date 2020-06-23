@@ -43,12 +43,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserCountTodos> getUserCountTodos() {
-//        List<UserCountTodos> userList = new ArrayList<>();
-
-//        userRepository.getUserCountTodos()
-//                .iterator()
-//                .forEachRemaining(userList::add);
-
         return userRepository.getUserCountTodos();
     }
 

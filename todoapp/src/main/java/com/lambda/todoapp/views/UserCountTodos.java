@@ -5,6 +5,6 @@ package com.lambda.todoapp.views;
  * @see UserRepository#getUserCountTodos() UserRepository.getUserCountTodos()
  */
 public interface UserCountTodos {
-    String getUsername();
+    String getUsernamerpt();
     int getCounttodos();
 }

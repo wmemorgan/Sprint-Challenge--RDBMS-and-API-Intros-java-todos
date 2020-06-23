@@ -16,7 +16,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
      * List all users and a count of how many open todos under their user record
      * @return List of usernames and the number of open todos
      */
-    @Query(value = "SELECT U.USERNAME, COUNT(U.USERNAME) AS counttodos FROM TODOS JOIN USERS U on TODOS.USERID = U.USERID WHERE COMPLETED = 0 GROUP BY U.USERNAME ORDER BY U.USERNAME",
+    @Query(value = "SELECT U.USERNAME as usernamerpt, COUNT(U.USERNAME) AS counttodos FROM TODOS JOIN USERS U on TODOS.USERID = U.USERID WHERE COMPLETED = false GROUP BY U.USERNAME ORDER BY U.USERNAME",
             nativeQuery = true)
     List<UserCountTodos> getUserCountTodos();
 

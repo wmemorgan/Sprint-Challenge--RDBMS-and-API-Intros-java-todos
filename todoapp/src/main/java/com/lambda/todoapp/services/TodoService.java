@@ -1,6 +1,7 @@
 package com.lambda.todoapp.services;
 
 import com.lambda.todoapp.models.Todo;
+import com.lambda.todoapp.models.User;
 
 import java.util.List;
 
@@ -30,19 +31,17 @@ public interface TodoService {
      * If a primary key is provided, the record is completely replaced
      * If no primary key is provided, one is automatically generated and the record is added to the database.
      *
-     * @param todo the todo object to be saved
-     * @return the saved todo object including any automatically generated fields
+     * @param todo the user associated with the task
      */
-    Todo save(Todo todo);
+    void save(Todo todo);
 
     /**
      * Updates the provided fields in the todo record referenced by the primary key.
      *
      * @param todo just the todo fields to be updated.
      * @param id   The primary key (long) of the todo to update
-     * @return the complete todo object that got updated
      */
-    Todo update(Todo todo, long id);
+    void update(Todo todo, long id);
 
     /**
      * Deletes the todo record and its telephone and animal items from the database based off of the provided primary key

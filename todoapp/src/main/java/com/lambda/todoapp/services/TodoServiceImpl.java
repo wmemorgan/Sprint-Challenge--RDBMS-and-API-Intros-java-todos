@@ -34,26 +34,13 @@ public class TodoServiceImpl implements TodoService{
     }
 
     @Override
-    public Todo save(Todo todo) {
-
-        Todo newTodo = new Todo();
-
-        // Handle todo record replacement
-        if (todo.getTodoid() != 0) {
-            todoRepository.findById(todo.getTodoid())
-                    .orElseThrow(() -> new EntityNotFoundException("Todo id " + todo.getTodoid() + " not found"));
-            newTodo.setTodoid(todo.getTodoid());
-        }
-
-        newTodo.setUser(todo.getUser());
-        newTodo.setDescription(todo.getDescription());
-
-        return todoRepository.save(newTodo);
+    public void save(Todo newTodo) {
+        todoRepository.save(newTodo);
     }
 
 
     @Override
-    public Todo update(Todo todo, long id) {
+    public void update(Todo todo, long id) {
         Todo currentTodo = findTodoById(id);
 
         if (todo.getDescription() != null) {
@@ -64,7 +51,7 @@ public class TodoServiceImpl implements TodoService{
             currentTodo.setCompleted(todo.isCompleted());
         }
 
-        return todoRepository.save(currentTodo);
+        todoRepository.save(currentTodo);
     }
 
     @Override

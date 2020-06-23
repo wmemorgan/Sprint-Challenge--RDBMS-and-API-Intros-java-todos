@@ -37,5 +37,20 @@ public class TodoController {
 
     }
 
+    @PatchMapping(value = "/todo/{todoid}")
+    public ResponseEntity<?> completeTodo(@PathVariable long todoid) {
+        if (todoService.findTodoById(todoid).isCompleted()) {
+            String msg = "Task is already complete";
+
+            return new ResponseEntity<>(msg, HttpStatus.BAD_REQUEST);
+        }
+
+        Todo updateTodo = todoService.findTodoById(todoid);
+        updateTodo.setCompleted(true);
+        todoService.update(updateTodo, todoid);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 }

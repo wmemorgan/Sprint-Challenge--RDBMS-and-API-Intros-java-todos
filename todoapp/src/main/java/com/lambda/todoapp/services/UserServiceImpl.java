@@ -4,7 +4,7 @@ import com.lambda.todoapp.models.Todo;
 import com.lambda.todoapp.models.User;
 import com.lambda.todoapp.repositories.TodoRepository;
 import com.lambda.todoapp.repositories.UserRepository;
-import com.lambda.todoapp.views.UserCountTodos;
+import com.lambda.todoapp.views.UserNameCountTodos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,8 +42,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserCountTodos> getUserCountTodos() {
-        return userRepository.getUserCountTodos();
+    public List<UserNameCountTodos> getUserNameCountTodos() {
+        return userRepository.getUserNameCountTodos();
     }
 
     @Override

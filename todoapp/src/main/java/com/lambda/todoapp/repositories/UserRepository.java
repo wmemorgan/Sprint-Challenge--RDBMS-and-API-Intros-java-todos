@@ -1,7 +1,7 @@
 package com.lambda.todoapp.repositories;
 
 import com.lambda.todoapp.models.User;
-import com.lambda.todoapp.views.UserCountTodos;
+import com.lambda.todoapp.views.UserNameCountTodos;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -16,8 +16,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
      * List all users and a count of how many open todos under their user record
      * @return List of usernames and the number of open todos
      */
-    @Query(value = "SELECT U.USERNAME as usernamerpt, COUNT(U.USERNAME) AS counttodos FROM TODOS JOIN USERS U on TODOS.USERID = U.USERID WHERE COMPLETED = false GROUP BY U.USERNAME ORDER BY U.USERNAME",
+    @Query(value = "SELECT u.username as usernamerpt, COUNT(u.username) AS counttodos FROM todos JOIN users u on todos.userid = u.userid WHERE completed = false GROUP BY u.username ORDER BY u.username",
             nativeQuery = true)
-    List<UserCountTodos> getUserCountTodos();
+    List<UserNameCountTodos> getUserNameCountTodos();
 
 }

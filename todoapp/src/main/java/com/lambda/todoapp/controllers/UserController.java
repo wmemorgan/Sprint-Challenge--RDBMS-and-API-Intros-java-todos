@@ -3,7 +3,7 @@ package com.lambda.todoapp.controllers;
 import com.lambda.todoapp.models.User;
 import com.lambda.todoapp.repositories.UserRepository;
 import com.lambda.todoapp.services.UserService;
-import com.lambda.todoapp.views.UserCountTodos;
+import com.lambda.todoapp.views.UserNameCountTodos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,7 +14,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -66,12 +65,12 @@ public class UserController {
      * <br>Example: <a href="http://localhost:2019/users/users/todos">http://localhost:2019/users/users/todos</a>
      *
      * @return JSON List of all the animals and their associated users
-     * @see UserRepository#getUserCountTodos() UserRepository.getUserCountTodos()
+     * @see UserService#getUserNameCountTodos() UserService.getUserNameCountTodos()
      */
     @GetMapping(value = "/users/todos", produces = {"applicaiton/json"})
     public ResponseEntity<?> getUserCountTodos() {
 
-        List<UserCountTodos> userList = userRepository.getUserCountTodos();
+        List<UserNameCountTodos> userList = userService.getUserNameCountTodos();
 
         return new ResponseEntity<>(userList, HttpStatus.OK);
     }

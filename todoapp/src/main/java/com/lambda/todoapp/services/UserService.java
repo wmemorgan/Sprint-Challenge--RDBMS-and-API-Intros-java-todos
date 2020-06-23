@@ -1,7 +1,7 @@
 package com.lambda.todoapp.services;
 
 import com.lambda.todoapp.models.User;
-import com.lambda.todoapp.views.UserCountTodos;
+import com.lambda.todoapp.views.UserNameCountTodos;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public interface UserService {
      */
     User findUserById(long id);
 
-    List<UserCountTodos> getUserCountTodos();
+    List<UserNameCountTodos> getUserNameCountTodos();
 
 
     /**

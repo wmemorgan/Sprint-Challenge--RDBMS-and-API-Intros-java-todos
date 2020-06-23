@@ -3,13 +3,15 @@ package com.lambda.todoapp.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * The entity allowing interaction with the Todos table
  */
 @Entity
 @Table(name = "todos")
-public class Todo extends Auditable {
+public class Todo extends Auditable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +21,10 @@ public class Todo extends Auditable {
     private String description;
 
     private boolean completed = false;
+
+    private Date createddate;
+
+    private String createdby;
 
     /**
      * Creates a join table joining Todos and Users
@@ -33,11 +39,14 @@ public class Todo extends Auditable {
     }
 
     public Todo(User user, String description) {
+        createddate = new Date();
+        createdby = user.getUsername();
         this.user = user;
         this.description = description;
     }
 
     public Todo(User user, String description, boolean completed) {
+        createddate = new Date();
         this.user = user;
         this.description = description;
         this.completed = completed;
@@ -75,14 +84,20 @@ public class Todo extends Auditable {
         this.user = user;
     }
 
+    public String getDate() {
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        return ft.format(createddate);
+    }
+
+
     @Override
     public String toString() {
         return "Todo{" +
+                "createdDate=" + getDate() +
                 "todoid=" + todoid +
                 ", description='" + description + '\'' +
                 ", completed=" + completed +
                 ", user=" + user +
-                ", createddate=" + createddate +
                 '}';
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +27,10 @@ public class User extends Auditable {
     @Column(nullable = false)
     private String password;
 
+    private Date createddate;
+
+    private String createdby;
+
     /**
      * Creates a join table joining Users and Todos in a One-To-Many relation.
      * Contains a List of Todo objects associated with this user.
@@ -39,11 +44,14 @@ public class User extends Auditable {
     public User() {
     }
 
-    public User(String username, String primaryemail, String password) {
+    public User(String username, String password, String primaryemail) {
+        createddate = new Date();
+        createdby = "System";
         this.username = username;
-        this.primaryemail = primaryemail;
         this.password = password;
+        this.primaryemail = primaryemail;
     }
+
 
     public long getUserid() {
         return userid;
@@ -77,6 +85,22 @@ public class User extends Auditable {
         this.password = password;
     }
 
+    public Date getCreateddate() {
+        return createddate;
+    }
+
+    public void setCreateddate(Date createddate) {
+        this.createddate = createddate;
+    }
+
+    public String getCreatedby() {
+        return createdby;
+    }
+
+    public void setCreatedby(String createdby) {
+        this.createdby = createdby;
+    }
+
     public List<Todo> getTodos() {
         return todos;
     }
@@ -91,7 +115,6 @@ public class User extends Auditable {
                 "userid=" + userid +
                 ", username='" + username + '\'' +
                 ", primaryemail='" + primaryemail + '\'' +
-                ", password='" + password + '\'' +
                 ", todos=" + todos +
                 '}';
     }

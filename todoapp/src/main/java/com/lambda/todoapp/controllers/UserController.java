@@ -67,7 +67,7 @@ public class UserController {
      * @return JSON List of all the animals and their associated users
      * @see UserService#getUserNameCountTodos() UserService.getUserNameCountTodos()
      */
-    @GetMapping(value = "/users/todos", produces = {"applicaiton/json"})
+    @GetMapping(value = "/users/todos", produces = {"application/json"})
     public ResponseEntity<?> getUserCountTodos() {
 
         List<UserNameCountTodos> userList = userService.getUserNameCountTodos();

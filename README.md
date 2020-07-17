@@ -2,7 +2,7 @@
 
 **Read these instructions carefully. Understand exactly what is expected _before_ starting this Sprint Challenge.**
 
-This challenge allows you to practice the concepts and techniques learned over the past sprint and apply them in a concrete project. This sprint explored **using RDBMS and APIs in Java**. During this sprint, you studied **SQL, Spring Data, JPA, and Hibernate**. In your challenge this week, you will demonstrate your mastery of these skills by creating **a Java Spring REST API Application**.
+This challenge allows you to practice the concepts and techniques learned over the past sprint and apply them in a concrete project. This sprint explored **using RDBMS and APIs in Java**. During this sprint, you studied **Spring Data, JPA, and Hibernate**. In your challenge this week, you will demonstrate your mastery of these skills by creating **a Java Spring REST API Application**.
 
 This is an individual assessment. All work must be your own. Your challenge score is a measure of your ability to work independently using the material covered through this sprint. You need to demonstrate proficiency in the concepts and objectives introduced and practiced in preceding days.
 
@@ -12,7 +12,7 @@ _You have **three hours** to complete this challenge. Plan your time accordingly
 
 ## Introduction
 
-This is a basic todo database scheme with users and a todo list. Users have a one to many relationship to todo list. One user can have many todo items while a todo item only matches to one users. CRUD operations are available to display and manipulate this data.
+This is a basic todo database scheme with users and a todo list. Users have a one to many relationship to todo list. One user can have many todo items while a todo item only matches to one user. CRUD operations are available to display and manipulate this data.
 
 Your final results should look like:
 
@@ -29,13 +29,11 @@ Your final results should look like:
         "primaryemail": "admin@lambdaschool.local",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:30:07",
                 "todoid": 2,
                 "description": "Give Joe access rights",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:30:07",
                 "todoid": 3,
                 "description": "Change the color of the home page",
                 "completed": false
@@ -48,19 +46,16 @@ Your final results should look like:
         "primaryemail": "cinnamon@lambdaschool.local",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:30:07",
                 "todoid": 5,
                 "description": "Take a nap",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:30:07",
                 "todoid": 6,
                 "description": "Rearrange my hutch",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:30:07",
                 "todoid": 7,
                 "description": "Groom my fur",
                 "completed": false
@@ -73,7 +68,6 @@ Your final results should look like:
         "primaryemail": "barnbarn@lambdaschool.local",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:30:07",
                 "todoid": 9,
                 "description": "Rearrange my hutch",
                 "completed": false
@@ -107,19 +101,16 @@ Your final results should look like:
     "primaryemail": "cinnamon@lambdaschool.local",
     "todos": [
         {
-            "createdDate": "2020-04-17 10:30:07",
             "todoid": 5,
             "description": "Take a nap",
             "completed": false
         },
         {
-            "createdDate": "2020-04-17 10:30:07",
             "todoid": 6,
             "description": "Rearrange my hutch",
             "completed": false
         },
         {
-            "createdDate": "2020-04-17 10:30:07",
             "todoid": 7,
             "description": "Groom my fur",
             "completed": false
@@ -136,79 +127,124 @@ Your final results should look like:
 DATA
 
 ```JSON
+  {
+      "username": "lambdallama",
+      "primaryemail": "llama@lambdaschool.local",
+      "password": "ILuvM4th!",
+      "todos": [
+          {
+              "description": "Take over the world"
+          },
+          {
+              "description": "Make lasagna"
+          }
+      ]
+  }
+```
+
+OUTPUT
+
+```TEXT
+Status OK
+http://localhost:2019/users/user/12
+```
+
+</details>
+
+<details>
+<summary>http://localhost:2019/users/user/12</summary>
+
+```JSON
 {
+    "userid": 12,
     "username": "lambdallama",
     "primaryemail": "llama@lambdaschool.local",
-    "password": "ILuvM4th!",
     "todos": [
         {
-            "description": "Take over the world"
+            "todoid": 13,
+            "description": "Take over the world",
+            "completed": false
         },
         {
-            "description": "Make lasagna"
+            "todoid": 14,
+            "description": "Make lasagna",
+            "completed": false
         }
     ]
 }
 ```
 
+</details>
+
+<details>
+<summary>PATCH http://localhost:2019/todos/todo/6</summary>
+
 OUTPUT
 
 ```TEXT
-No Body
-
-Status 201 Created
-Location Header: http://localhost:2019/users/user/12
+STATUS OK
 ```
 
 </details>
 
 <details>
-<summary>POST http://localhost:2019/todos/user/4</summary>
-
-DATA
+<summary>localhost:2019/users/user/4</summary>
 
 ```JSON
 {
-    "description": "Make coffee"
+    "userid": 4,
+    "username": "cinnamon",
+    "primaryemail": "cinnamon@lambdaschool.local",
+    "todos": [
+        {
+            "todoid": 5,
+            "description": "Take a nap",
+            "completed": false
+        },
+        {
+            "todoid": 6,
+            "description": "Rearrange my hutch",
+            "completed": true
+        },
+        {
+            "todoid": 7,
+            "description": "Groom my fur",
+            "completed": false
+        }
+    ]
 }
 ```
 
+</details>
+
+<details>
+<summary>DELETE http://localhost:2019/users/user/10</summary>
+
 OUTPUT
 
 ```TEXT
-No Body
-
-Status 201 Created
-Location Header: http://localhost:2019/todos/todo/15
+STATUS OK
 ```
 
 </details>
 
 <details>
-<summary>PATCH http://localhost:2019/todos/todo/7</summary>
+<summary>http://localhost:2019/users/user/10</summary>
 
-OUTPUT
-
-```TEXT
-No Body
-
-Status OK
+```JSON
+{
+    "timestamp": "2020-07-14 14:55:38",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "User id 10 not found!",
+    "trace": "javax.persistence.EntityNotFoundException: User id 10 not found!\n\tat com.lambdaschool.todos.services.UserServiceImpl.lambda$findUserById$0(UserServiceImpl.java:37)\n\tat java.base/java.util.Optional.orElseThrow(Optional.java:401)\n\tat com.lambdaschool.todos.services.UserServiceImpl.findUserById(UserServiceImpl.java:37)\n\tat com.lambdaschool.todos.services.UserServiceImpl$$FastClassBySpringCGLIB$$3b13ff41.invoke(<generated>)\n\tat org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)\n\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:769)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)\n\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)\n\tat org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:366)\n\tat org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:99)\n\tat org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)\n\tat org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:747)\n\tat org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:689)\n\tat com.lambdaschool.todos.services.UserServiceImpl$$EnhancerBySpringCGLIB$$d1e3f76f.findUserById(<generated>)\n\tat com.lambdaschool.todos.controllers.UserController.getUserById(UserController.java:61)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.base/java.lang.reflect.Method.invoke(Method.java:564)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)\n\tat org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)\n\tat org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:879)\n\tat org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:793)\n\tat org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)\n\tat org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)\n\tat org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)\n\tat org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)\n\tat org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:634)\n\tat org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)\n\tat javax.servlet.http.HttpServlet.service(HttpServlet.java:741)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)\n\tat org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)\n\tat org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)\n\tat org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)\n\tat org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)\n\tat org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)\n\tat org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)\n\tat org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)\n\tat org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)\n\tat org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)\n\tat org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)\n\tat org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:367)\n\tat org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)\n\tat org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)\n\tat org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1639)\n\tat org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)\n\tat java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)\n\tat org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)\n\tat java.base/java.lang.Thread.run(Thread.java:832)\n",
+    "path": "/users/user/10"
+}
 ```
 
 </details>
 
-<details>
-<summary>DELETE http://localhost:2019/users/userid/10</summary>
-
-OUTPUT
-
-```TEXT
-No Body
-
-Status OK
-```
-
-</details>
+### Stretch Goals
 
 <details>
 <summary>http://localhost:2019/users/users/todos</summary>
@@ -226,47 +262,8 @@ Status OK
     {
         "usernamerpt": "cinnamon",
         "counttodos": 3
-    },
-    {
-        "usernamerpt": "lambdallama",
-        "counttodos": 2
     }
 ]
-```
-
-</details>
-
-### Stretch Goals
-
-<details>
-<summary>http://localhost:2019/users/user/cinnamon/todos</summary>
-
-```JSON
-{
-    "userid": 4,
-    "username": "cinnamon",
-    "primaryemail": "cinnamon@lambdaschool.local",
-    "todos": [
-        {
-            "createdDate": "2020-04-17 10:30:07",
-            "todoid": 5,
-            "description": "Take a nap",
-            "completed": false
-        },
-        {
-            "createdDate": "2020-04-17 10:30:07",
-            "todoid": 6,
-            "description": "Rearrange my hutch",
-            "completed": false
-        },
-        {
-            "createdDate": "2020-04-17 10:39:45",
-            "todoid": 15,
-            "description": "Make coffee",
-            "completed": false
-        }
-    ]
-}
 ```
 
 </details>
@@ -282,13 +279,11 @@ Status OK
         "primaryemail": "admin@lambdaschool.local",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 2,
                 "description": "Give Joe access rights",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 3,
                 "description": "Change the color of the home page",
                 "completed": false
@@ -301,19 +296,16 @@ Status OK
         "primaryemail": "cinnamon@lambdaschool.local",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 5,
                 "description": "Take a nap",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 6,
                 "description": "Rearrange my hutch",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 7,
                 "description": "Groom my fur",
                 "completed": false
@@ -326,7 +318,6 @@ Status OK
         "primaryemail": "barnbarn@lambdaschool.local",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 9,
                 "description": "Rearrange my hutch",
                 "completed": false
@@ -347,1118 +338,1012 @@ Status OK
     },
     {
         "userid": 12,
-        "username": "danelle.wiza",
-        "primaryemail": "tory.hessel@gmail.com",
+        "username": "kyle.wunsch",
+        "primaryemail": "morton.predovic@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 13,
-                "description": "Catch Caterpie",
+                "description": "Catch Onix",
                 "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 14,
-        "username": "thuy.watsica",
-        "primaryemail": "myrle.bashirian@gmail.com",
-        "todos": [
+            },
             {
-                "createdDate": "2020-04-17 10:48:19",
+                "todoid": 14,
+                "description": "Catch Seel",
+                "completed": false
+            },
+            {
                 "todoid": 15,
-                "description": "Catch Mewtwo",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 16,
-                "description": "Catch Jynx",
+                "description": "Catch Seadra",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 17,
-        "username": "lavenia.ondricka",
-        "primaryemail": "inell.weissnat@gmail.com",
+        "userid": 16,
+        "username": "wilmer.bahringer",
+        "primaryemail": "kyle.stoltenberg@yahoo.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
+                "todoid": 17,
+                "description": "Catch Rapidash",
+                "completed": false
+            },
+            {
                 "todoid": 18,
-                "description": "Catch Kadabra",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 19,
-                "description": "Catch Jolteon",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 20,
-                "description": "Catch Jynx",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 21,
-        "username": "danielle.rippin",
-        "primaryemail": "efren.kovacek@hotmail.com",
-        "todos": []
-    },
-    {
-        "userid": 22,
-        "username": "wendell.dietrich",
-        "primaryemail": "bernardina.kirlin@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 23,
-                "description": "Catch Kadabra",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 24,
-                "description": "Catch Doduo",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 25,
-                "description": "Catch Shellder",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 26,
-        "username": "tom.boyle",
-        "primaryemail": "melani.schmidt@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 27,
-                "description": "Catch Kabutops",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 28,
-                "description": "Catch Magneton",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 29,
-                "description": "Catch Omastar",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 30,
-        "username": "sherry.gerhold",
-        "primaryemail": "sonya.hettinger@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 31,
-                "description": "Catch Sandslash",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 32,
-        "username": "cory.abbott",
-        "primaryemail": "sue.ernser@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 33,
-                "description": "Catch Vulpix",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 34,
-                "description": "Catch Machamp",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 35,
-        "username": "jessia.crist",
-        "primaryemail": "zora.bogisich@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 36,
-                "description": "Catch Omanyte",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 37,
-        "username": "nell.swift",
-        "primaryemail": "nancee.renner@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 38,
-        "username": "diego.wolf",
-        "primaryemail": "devona.batz@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 39,
-                "description": "Catch Vileplume",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 40,
-                "description": "Catch Kabutops",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 41,
-        "username": "rex.greenholt",
-        "primaryemail": "shaniqua.zulauf@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 42,
-                "description": "Catch Lapras",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 43,
-        "username": "cameron.langworth",
-        "primaryemail": "milford.keebler@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 44,
-                "description": "Catch Pikachu",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 45,
-                "description": "Catch Venonat",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 46,
-                "description": "Catch Kakuna",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 47,
-        "username": "moses.donnelly",
-        "primaryemail": "burl.schumm@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 48,
-                "description": "Catch Hitmonchan",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 49,
-                "description": "Catch Zapdos",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 50,
-                "description": "Catch Kabutops",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 51,
-        "username": "lovetta.toy",
-        "primaryemail": "daniela.considine@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 52,
-                "description": "Catch Tentacool",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 53,
-        "username": "lamonica.west",
-        "primaryemail": "yajaira.osinski@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 54,
-                "description": "Catch Lickitung",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 55,
-                "description": "Catch Golem",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 56,
-        "username": "seymour.towne",
-        "primaryemail": "dawna.casper@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 57,
-                "description": "Catch Raichu",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 58,
-                "description": "Catch Dratini",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 59,
-                "description": "Catch Dodrio",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 60,
-        "username": "oma.lind",
-        "primaryemail": "yolando.jakubowski@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 61,
-                "description": "Catch Metapod",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 62,
-        "username": "delilah.franecki",
-        "primaryemail": "hollis.moore@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 63,
-                "description": "Catch Eevee",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 64,
-                "description": "Catch Mr. Mime",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 65,
-                "description": "Catch Venusaur",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 66,
-        "username": "francisca.kuvalis",
-        "primaryemail": "sterling.okon@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 67,
-                "description": "Catch Magikarp",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 68,
-                "description": "Catch Snorlax",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 69,
-                "description": "Catch Jynx",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 70,
-        "username": "arturo.schultz",
-        "primaryemail": "elida.jones@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 71,
-                "description": "Catch Nidorino",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 72,
                 "description": "Catch Butterfree",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 73,
-                "description": "Catch Cloyster",
+                "todoid": 19,
+                "description": "Catch Muk",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 74,
-        "username": "georgine.bailey",
-        "primaryemail": "ismael.wisoky@yahoo.com",
+        "userid": 20,
+        "username": "tamala.jacobs",
+        "primaryemail": "darin.sipes@yahoo.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 75,
-                "description": "Catch Cloyster",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 76,
-        "username": "vida.prosacco",
-        "primaryemail": "rico.buckridge@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 77,
-                "description": "Catch Pidgey",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 78,
-                "description": "Catch Alakazam",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 79,
-                "description": "Catch Bulbasaur",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 80,
-        "username": "shaunte.homenick",
-        "primaryemail": "oscar.farrell@gmail.com",
-        "todos": []
-    },
-    {
-        "userid": 81,
-        "username": "shirley.greenholt",
-        "primaryemail": "harvey.lebsack@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 82,
-        "username": "vincent.klein",
-        "primaryemail": "damian.graham@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 83,
-                "description": "Catch Mewtwo",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 84,
-                "description": "Catch Ekans",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 85,
-        "username": "betty.schulist",
-        "primaryemail": "despina.gerhold@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 86,
-        "username": "maire.kreiger",
-        "primaryemail": "sherrill.littel@gmail.com",
-        "todos": []
-    },
-    {
-        "userid": 87,
-        "username": "jefferey.champlin",
-        "primaryemail": "mckinley.walter@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 88,
+                "todoid": 21,
                 "description": "Catch Oddish",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 89,
-                "description": "Catch Kangaskhan",
+                "todoid": 22,
+                "description": "Catch Dragonair",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 90,
-                "description": "Catch Krabby",
+                "todoid": 23,
+                "description": "Catch Weedle",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 91,
-        "username": "lydia.kerluke",
-        "primaryemail": "darcy.langworth@gmail.com",
+        "userid": 24,
+        "username": "aaron.braun",
+        "primaryemail": "helen.homenick@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 92,
-                "description": "Catch Doduo",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 93,
-                "description": "Catch Nidoqueen",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 94,
-        "username": "cristin.kessler",
-        "primaryemail": "susanne.ziemann@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 95,
-                "description": "Catch Grimer",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 96,
-        "username": "tracy.lindgren",
-        "primaryemail": "penney.yundt@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 97,
-                "description": "Catch Jigglypuff",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 98,
-                "description": "Catch Nidoking",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 99,
-        "username": "garrett.kemmer",
-        "primaryemail": "garry.hyatt@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 100,
-                "description": "Catch Rhydon",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 101,
-                "description": "Catch Machop",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 102,
-        "username": "lilly.brekke",
-        "primaryemail": "victor.murray@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 103,
-                "description": "Catch Hitmonlee",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 104,
-                "description": "Catch Voltorb",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 105,
-                "description": "Catch Clefairy",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 106,
-        "username": "aleshia.waters",
-        "primaryemail": "juan.kuhlman@gmail.com",
-        "todos": []
-    },
-    {
-        "userid": 107,
-        "username": "bettina.mohr",
-        "primaryemail": "maryalice.marvin@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 108,
-                "description": "Catch Venusaur",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 109,
-                "description": "Catch Raichu",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 110,
-        "username": "harlan.huels",
-        "primaryemail": "ronald.lesch@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 111,
-        "username": "tarsha.stiedemann",
-        "primaryemail": "isobel.koch@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 112,
-        "username": "kathryn.lueilwitz",
-        "primaryemail": "eloy.kerluke@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 113,
-        "username": "sandy.mccullough",
-        "primaryemail": "jacinto.labadie@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 114,
-                "description": "Catch Seaking",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 115,
-        "username": "merlin.carroll",
-        "primaryemail": "kevin.jakubowski@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 116,
-                "description": "Catch Golem",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 117,
-                "description": "Catch Horsea",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 118,
-        "username": "queenie.towne",
-        "primaryemail": "kristopher.cummerata@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 119,
-                "description": "Catch Raticate",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 120,
-                "description": "Catch Pidgey",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 121,
-        "username": "derick.parisian",
-        "primaryemail": "denver.baumbach@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 122,
-                "description": "Catch Rattata",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 123,
-                "description": "Catch Cloyster",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 124,
-        "username": "sherwood.blanda",
-        "primaryemail": "benjamin.altenwerth@gmail.com",
-        "todos": []
-    },
-    {
-        "userid": 125,
-        "username": "grover.parisian",
-        "primaryemail": "gayle.klein@gmail.com",
-        "todos": []
-    },
-    {
-        "userid": 126,
-        "username": "bryon.doyle",
-        "primaryemail": "melynda.corwin@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 127,
-                "description": "Catch Mew",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 128,
-                "description": "Catch Magikarp",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 129,
-                "description": "Catch Gengar",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 130,
-        "username": "tory.runolfsdottir",
-        "primaryemail": "mark.muller@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 131,
-                "description": "Catch Pikachu",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 132,
-                "description": "Catch Ivysaur",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 133,
-        "username": "dino.deckow",
-        "primaryemail": "jessie.padberg@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 134,
-                "description": "Catch Jigglypuff",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 135,
-        "username": "tamesha.connelly",
-        "primaryemail": "stephnie.hettinger@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 136,
-                "description": "Catch Krabby",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 137,
+                "todoid": 25,
                 "description": "Catch Fearow",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 138,
-        "username": "dianna.paucek",
-        "primaryemail": "kizzy.runolfsdottir@yahoo.com",
+        "userid": 26,
+        "username": "griselda.collins",
+        "primaryemail": "ramiro.bayer@hotmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 139,
-                "description": "Catch Oddish",
+                "todoid": 27,
+                "description": "Catch Arbok",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 140,
-                "description": "Catch Chansey",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 141,
-        "username": "fonda.boehm",
-        "primaryemail": "kiana.bailey@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 142,
-                "description": "Catch Articuno",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 143,
-        "username": "jere.feest",
-        "primaryemail": "noel.casper@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 144,
-                "description": "Catch Graveler",
+                "todoid": 28,
+                "description": "Catch Beedrill",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 145,
-                "description": "Catch Vileplume",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 146,
-        "username": "korey.johnston",
-        "primaryemail": "carmelia.brown@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 147,
-                "description": "Catch Ekans",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 148,
+                "todoid": 29,
                 "description": "Catch Pikachu",
                 "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 30,
+        "username": "javier.schulist",
+        "primaryemail": "edgar.mckenzie@yahoo.com",
+        "todos": [
+            {
+                "todoid": 31,
+                "description": "Catch Porygon",
+                "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 149,
-                "description": "Catch Parasect",
+                "todoid": 32,
+                "description": "Catch Beedrill",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 150,
-        "username": "lanette.olson",
-        "primaryemail": "alica.rogahn@gmail.com",
+        "userid": 33,
+        "username": "barbera.raynor",
+        "primaryemail": "douglass.bartoletti@yahoo.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 151,
+                "todoid": 34,
+                "description": "Catch Bellsprout",
+                "completed": false
+            },
+            {
+                "todoid": 35,
+                "description": "Catch Meowth",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 36,
+        "username": "rosanne.steuber",
+        "primaryemail": "delinda.bergstrom@hotmail.com",
+        "todos": [
+            {
+                "todoid": 37,
+                "description": "Catch Sandslash",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 38,
+        "username": "sam.mckenzie",
+        "primaryemail": "dominique.ebert@hotmail.com",
+        "todos": [
+            {
+                "todoid": 39,
+                "description": "Catch Pidgeot",
+                "completed": false
+            },
+            {
+                "todoid": 40,
+                "description": "Catch Aerodactyl",
+                "completed": false
+            },
+            {
+                "todoid": 41,
+                "description": "Catch Wigglytuff",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 42,
+        "username": "branda.howe",
+        "primaryemail": "carolynn.murray@hotmail.com",
+        "todos": [
+            {
+                "todoid": 43,
+                "description": "Catch Kakuna",
+                "completed": false
+            },
+            {
+                "todoid": 44,
+                "description": "Catch Ekans",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 45,
+        "username": "gertrud.crona",
+        "primaryemail": "linwood.marquardt@yahoo.com",
+        "todos": [
+            {
+                "todoid": 46,
+                "description": "Catch Gloom",
+                "completed": false
+            },
+            {
+                "todoid": 47,
+                "description": "Catch Moltres",
+                "completed": false
+            },
+            {
+                "todoid": 48,
+                "description": "Catch Spearow",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 49,
+        "username": "leo.osinski",
+        "primaryemail": "neely.swift@yahoo.com",
+        "todos": [
+            {
+                "todoid": 50,
+                "description": "Catch Zapdos",
+                "completed": false
+            },
+            {
+                "todoid": 51,
+                "description": "Catch Charmeleon",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 52,
+        "username": "shemika.brakus",
+        "primaryemail": "doug.upton@hotmail.com",
+        "todos": [
+            {
+                "todoid": 53,
+                "description": "Catch Magneton",
+                "completed": false
+            },
+            {
+                "todoid": 54,
+                "description": "Catch Slowpoke",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 55,
+        "username": "sam.bins",
+        "primaryemail": "hang.mante@yahoo.com",
+        "todos": [
+            {
+                "todoid": 56,
+                "description": "Catch Nidoqueen",
+                "completed": false
+            },
+            {
+                "todoid": 57,
+                "description": "Catch Sandshrew",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 58,
+        "username": "kathryn.mraz",
+        "primaryemail": "larue.haley@hotmail.com",
+        "todos": [
+            {
+                "todoid": 59,
+                "description": "Catch Charmander",
+                "completed": false
+            },
+            {
+                "todoid": 60,
+                "description": "Catch Dodrio",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 61,
+        "username": "elias.toy",
+        "primaryemail": "earnestine.schiller@yahoo.com",
+        "todos": [
+            {
+                "todoid": 62,
+                "description": "Catch Krabby",
+                "completed": false
+            },
+            {
+                "todoid": 63,
+                "description": "Catch Goldeen",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 64,
+        "username": "arlie.cassin",
+        "primaryemail": "yun.aufderhar@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 65,
+        "username": "ashly.schimmel",
+        "primaryemail": "asa.strosin@hotmail.com",
+        "todos": [
+            {
+                "todoid": 66,
+                "description": "Catch Rattata",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 67,
+        "username": "jeannette.lubowitz",
+        "primaryemail": "jarrod.koepp@yahoo.com",
+        "todos": [
+            {
+                "todoid": 68,
+                "description": "Catch Arbok",
+                "completed": false
+            },
+            {
+                "todoid": 69,
+                "description": "Catch Clefairy",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 70,
+        "username": "wan.haag",
+        "primaryemail": "shalonda.graham@gmail.com",
+        "todos": [
+            {
+                "todoid": 71,
+                "description": "Catch Cloyster",
+                "completed": false
+            },
+            {
+                "todoid": 72,
+                "description": "Catch Kakuna",
+                "completed": false
+            },
+            {
+                "todoid": 73,
+                "description": "Catch Venusaur",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 74,
+        "username": "bernardina.beahan",
+        "primaryemail": "beula.hegmann@yahoo.com",
+        "todos": [
+            {
+                "todoid": 75,
                 "description": "Catch Diglett",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 152,
-        "username": "brock.douglas",
-        "primaryemail": "dewey.kuhlman@hotmail.com",
+        "userid": 76,
+        "username": "roman.maggio",
+        "primaryemail": "isabelle.ryan@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 153,
-                "description": "Catch Charizard",
+                "todoid": 77,
+                "description": "Catch Hypno",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 154,
-        "username": "rich.orn",
-        "primaryemail": "gracia.von@gmail.com",
+        "userid": 78,
+        "username": "don.parker",
+        "primaryemail": "marlene.koepp@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 155,
-                "description": "Catch Alakazam",
+                "todoid": 79,
+                "description": "Catch Farfetch'd",
+                "completed": false
+            },
+            {
+                "todoid": 80,
+                "description": "Catch Vaporeon",
+                "completed": false
+            },
+            {
+                "todoid": 81,
+                "description": "Catch Lapras",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 156,
-        "username": "jamey.dubuque",
-        "primaryemail": "ned.rice@hotmail.com",
+        "userid": 82,
+        "username": "jesse.wunsch",
+        "primaryemail": "wayne.murazik@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 157,
+                "todoid": 83,
+                "description": "Catch Dratini",
+                "completed": false
+            },
+            {
+                "todoid": 84,
+                "description": "Catch Machop",
+                "completed": false
+            },
+            {
+                "todoid": 85,
+                "description": "Catch Venonat",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 86,
+        "username": "dan.kunde",
+        "primaryemail": "heike.bergnaum@hotmail.com",
+        "todos": [
+            {
+                "todoid": 87,
+                "description": "Catch Arbok",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 88,
+        "username": "casandra.legros",
+        "primaryemail": "wilburn.sipes@gmail.com",
+        "todos": []
+    },
+    {
+        "userid": 89,
+        "username": "yahaira.rice",
+        "primaryemail": "hal.kertzmann@yahoo.com",
+        "todos": []
+    },
+    {
+        "userid": 90,
+        "username": "gertrud.dickinson",
+        "primaryemail": "katelin.reichel@gmail.com",
+        "todos": [
+            {
+                "todoid": 91,
+                "description": "Catch Doduo",
+                "completed": false
+            },
+            {
+                "todoid": 92,
+                "description": "Catch Ninetales",
+                "completed": false
+            },
+            {
+                "todoid": 93,
+                "description": "Catch Mew",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 94,
+        "username": "miles.graham",
+        "primaryemail": "joesph.willms@gmail.com",
+        "todos": [
+            {
+                "todoid": 95,
                 "description": "Catch Snorlax",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 158,
-        "username": "sarina.steuber",
-        "primaryemail": "mistie.emard@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 159,
-        "username": "shamika.braun",
-        "primaryemail": "mia.schuster@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 160,
-        "username": "arron.kshlerin",
-        "primaryemail": "carri.rosenbaum@yahoo.com",
+        "userid": 96,
+        "username": "rossana.powlowski",
+        "primaryemail": "porsha.purdy@yahoo.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 161,
-                "description": "Catch Marowak",
+                "todoid": 97,
+                "description": "Catch Gastly",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 162,
-                "description": "Catch Golem",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 163,
-                "description": "Catch Hypno",
+                "todoid": 98,
+                "description": "Catch Geodude",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 164,
-        "username": "freddy.dubuque",
-        "primaryemail": "huey.weimann@gmail.com",
+        "userid": 99,
+        "username": "demetrius.collins",
+        "primaryemail": "kassie.waters@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 165,
+                "todoid": 100,
+                "description": "Catch Articuno",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 101,
+        "username": "royce.miller",
+        "primaryemail": "steven.wisoky@gmail.com",
+        "todos": [
+            {
+                "todoid": 102,
+                "description": "Catch Tentacruel",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 103,
+        "username": "marlin.wisozk",
+        "primaryemail": "roderick.hoppe@gmail.com",
+        "todos": [
+            {
+                "todoid": 104,
+                "description": "Catch Machoke",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 105,
+        "username": "chauncey.rolfson",
+        "primaryemail": "anthony.swift@gmail.com",
+        "todos": [
+            {
+                "todoid": 106,
+                "description": "Catch Arbok",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 107,
+        "username": "kyle.steuber",
+        "primaryemail": "estelle.hane@yahoo.com",
+        "todos": [
+            {
+                "todoid": 108,
+                "description": "Catch Clefairy",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 109,
+        "username": "cecile.metz",
+        "primaryemail": "euna.cole@gmail.com",
+        "todos": []
+    },
+    {
+        "userid": 110,
+        "username": "lonny.parker",
+        "primaryemail": "madie.maggio@gmail.com",
+        "todos": [
+            {
+                "todoid": 111,
+                "description": "Catch Seaking",
+                "completed": false
+            },
+            {
+                "todoid": 112,
+                "description": "Catch Flareon",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 113,
+        "username": "myles.cronin",
+        "primaryemail": "annelle.treutel@gmail.com",
+        "todos": [
+            {
+                "todoid": 114,
+                "description": "Catch Kadabra",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 115,
+        "username": "guy.koepp",
+        "primaryemail": "merle.kassulke@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 116,
+        "username": "malcolm.mueller",
+        "primaryemail": "norbert.abernathy@hotmail.com",
+        "todos": [
+            {
+                "todoid": 117,
+                "description": "Catch Pinsir",
+                "completed": false
+            },
+            {
+                "todoid": 118,
+                "description": "Catch Gyarados",
+                "completed": false
+            },
+            {
+                "todoid": 119,
+                "description": "Catch Snorlax",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 120,
+        "username": "darrell.kirlin",
+        "primaryemail": "dirk.trantow@yahoo.com",
+        "todos": [
+            {
+                "todoid": 121,
+                "description": "Catch Spearow",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 122,
+        "username": "carter.sawayn",
+        "primaryemail": "loni.williamson@hotmail.com",
+        "todos": [
+            {
+                "todoid": 123,
+                "description": "Catch Machop",
+                "completed": false
+            },
+            {
+                "todoid": 124,
+                "description": "Catch Raichu",
+                "completed": false
+            },
+            {
+                "todoid": 125,
+                "description": "Catch Clefable",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 126,
+        "username": "tana.mueller",
+        "primaryemail": "laurel.denesik@yahoo.com",
+        "todos": [
+            {
+                "todoid": 127,
+                "description": "Catch Cloyster",
+                "completed": false
+            },
+            {
+                "todoid": 128,
+                "description": "Catch Grimer",
+                "completed": false
+            },
+            {
+                "todoid": 129,
+                "description": "Catch Rhydon",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 130,
+        "username": "lula.zulauf",
+        "primaryemail": "claris.schroeder@gmail.com",
+        "todos": [
+            {
+                "todoid": 131,
+                "description": "Catch Beedrill",
+                "completed": false
+            },
+            {
+                "todoid": 132,
+                "description": "Catch Venusaur",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 133,
+        "username": "jordan.champlin",
+        "primaryemail": "phoebe.hahn@gmail.com",
+        "todos": [
+            {
+                "todoid": 134,
+                "description": "Catch Goldeen",
+                "completed": false
+            },
+            {
+                "todoid": 135,
+                "description": "Catch Sandshrew",
+                "completed": false
+            },
+            {
+                "todoid": 136,
+                "description": "Catch Articuno",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 137,
+        "username": "man.bernier",
+        "primaryemail": "brant.howell@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 138,
+        "username": "phillip.spinka",
+        "primaryemail": "caren.heaney@gmail.com",
+        "todos": [
+            {
+                "todoid": 139,
+                "description": "Catch Weezing",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 140,
+        "username": "trinidad.pollich",
+        "primaryemail": "osvaldo.kuhlman@gmail.com",
+        "todos": []
+    },
+    {
+        "userid": 141,
+        "username": "jessi.schimmel",
+        "primaryemail": "sandra.watsica@yahoo.com",
+        "todos": [
+            {
+                "todoid": 142,
+                "description": "Catch Arbok",
+                "completed": false
+            },
+            {
+                "todoid": 143,
+                "description": "Catch Abra",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 144,
+        "username": "cary.rodriguez",
+        "primaryemail": "carolyne.crona@hotmail.com",
+        "todos": [
+            {
+                "todoid": 145,
+                "description": "Catch Charmander",
+                "completed": false
+            },
+            {
+                "todoid": 146,
+                "description": "Catch Tauros",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 147,
+        "username": "daren.cassin",
+        "primaryemail": "tamica.pfeffer@hotmail.com",
+        "todos": [
+            {
+                "todoid": 148,
+                "description": "Catch Exeggcute",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 149,
+        "username": "sparkle.fritsch",
+        "primaryemail": "patricia.goldner@yahoo.com",
+        "todos": []
+    },
+    {
+        "userid": 150,
+        "username": "marianela.borer",
+        "primaryemail": "hilma.rogahn@gmail.com",
+        "todos": [
+            {
+                "todoid": 151,
+                "description": "Catch Slowbro",
+                "completed": false
+            },
+            {
+                "todoid": 152,
+                "description": "Catch Alakazam",
+                "completed": false
+            },
+            {
+                "todoid": 153,
                 "description": "Catch Mewtwo",
                 "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 166,
-                "description": "Catch Poliwhirl",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 167,
-                "description": "Catch Mankey",
-                "completed": false
             }
         ]
     },
     {
-        "userid": 168,
-        "username": "chantay.pfannerstill",
-        "primaryemail": "nilsa.satterfield@yahoo.com",
+        "userid": 154,
+        "username": "tod.murazik",
+        "primaryemail": "benita.pouros@yahoo.com",
+        "todos": []
+    },
+    {
+        "userid": 155,
+        "username": "laci.price",
+        "primaryemail": "rowena.ohara@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 169,
-                "description": "Catch Nidoqueen",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 170,
-                "description": "Catch Voltorb",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 171,
-                "description": "Catch Tentacool",
+                "todoid": 156,
+                "description": "Catch Meowth",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 172,
-        "username": "jarrett.hessel",
-        "primaryemail": "loretta.reichel@hotmail.com",
+        "userid": 157,
+        "username": "zenia.wehner",
+        "primaryemail": "guy.aufderhar@hotmail.com",
+        "todos": [
+            {
+                "todoid": 158,
+                "description": "Catch Onix",
+                "completed": false
+            },
+            {
+                "todoid": 159,
+                "description": "Catch Lapras",
+                "completed": false
+            },
+            {
+                "todoid": 160,
+                "description": "Catch Slowpoke",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 161,
+        "username": "jacques.wolff",
+        "primaryemail": "carlena.stracke@hotmail.com",
         "todos": []
+    },
+    {
+        "userid": 162,
+        "username": "jerry.rau",
+        "primaryemail": "yael.aufderhar@yahoo.com",
+        "todos": [
+            {
+                "todoid": 163,
+                "description": "Catch Metapod",
+                "completed": false
+            },
+            {
+                "todoid": 164,
+                "description": "Catch Gloom",
+                "completed": false
+            },
+            {
+                "todoid": 165,
+                "description": "Catch Nidorino",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 166,
+        "username": "thaddeus.wolf",
+        "primaryemail": "ashlie.boyle@yahoo.com",
+        "todos": [
+            {
+                "todoid": 167,
+                "description": "Catch Gastly",
+                "completed": false
+            },
+            {
+                "todoid": 168,
+                "description": "Catch Wigglytuff",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 169,
+        "username": "reyes.rogahn",
+        "primaryemail": "elliott.gutmann@gmail.com",
+        "todos": [
+            {
+                "todoid": 170,
+                "description": "Catch Ditto",
+                "completed": false
+            },
+            {
+                "todoid": 171,
+                "description": "Catch Paras",
+                "completed": false
+            },
+            {
+                "todoid": 172,
+                "description": "Catch Butterfree",
+                "completed": false
+            }
+        ]
     },
     {
         "userid": 173,
-        "username": "maynard.corwin",
-        "primaryemail": "daren.rutherford@hotmail.com",
+        "username": "sandi.dooley",
+        "primaryemail": "maire.hagenes@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 174,
-                "description": "Catch Omastar",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 175,
-                "description": "Catch Omanyte",
+                "description": "Catch Scyther",
                 "completed": false
             }
         ]
     },
     {
+        "userid": 175,
+        "username": "dillon.langworth",
+        "primaryemail": "genny.quitzon@gmail.com",
+        "todos": []
+    },
+    {
         "userid": 176,
-        "username": "buck.ratke",
-        "primaryemail": "karl.kris@yahoo.com",
+        "username": "melonie.crooks",
+        "primaryemail": "eileen.blanda@yahoo.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 177,
-                "description": "Catch Jolteon",
+                "description": "Catch Kadabra",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 178,
-                "description": "Catch Hitmonlee",
+                "description": "Catch Poliwrath",
                 "completed": false
             }
         ]
     },
     {
         "userid": 179,
-        "username": "dennise.brakus",
-        "primaryemail": "bev.hoppe@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 180,
-        "username": "kaylee.wilkinson",
-        "primaryemail": "stewart.aufderhar@gmail.com",
-        "todos": []
+        "username": "hiroko.west",
+        "primaryemail": "jimmie.runolfsdottir@gmail.com",
+        "todos": [
+            {
+                "todoid": 180,
+                "description": "Catch Paras",
+                "completed": false
+            }
+        ]
     },
     {
         "userid": 181,
-        "username": "leonore.waelchi",
-        "primaryemail": "yvone.mclaughlin@hotmail.com",
+        "username": "juana.dickinson",
+        "primaryemail": "tequila.rau@yahoo.com",
         "todos": []
     },
     {
         "userid": 182,
-        "username": "maricruz.boehm",
-        "primaryemail": "geneva.spencer@yahoo.com",
+        "username": "winston.bergstrom",
+        "primaryemail": "winfred.dubuque@hotmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 183,
-                "description": "Catch Dugtrio",
+                "description": "Catch Rattata",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 184,
-                "description": "Catch Voltorb",
+                "description": "Catch Primeape",
                 "completed": false
             }
         ]
     },
     {
         "userid": 185,
-        "username": "michaele.altenwerth",
-        "primaryemail": "cris.keeling@gmail.com",
-        "todos": []
-    },
-    {
-        "userid": 186,
-        "username": "louis.towne",
-        "primaryemail": "joaquina.mclaughlin@yahoo.com",
-        "todos": []
+        "username": "frankie.heaney",
+        "primaryemail": "ollie.stiedemann@hotmail.com",
+        "todos": [
+            {
+                "todoid": 186,
+                "description": "Catch Snorlax",
+                "completed": false
+            }
+        ]
     },
     {
         "userid": 187,
-        "username": "isidro.hessel",
-        "primaryemail": "adolfo.schoen@yahoo.com",
+        "username": "scott.pagac",
+        "primaryemail": "kimberley.runolfsdottir@hotmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 188,
-                "description": "Catch Hypno",
+                "description": "Catch Dugtrio",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 189,
                 "description": "Catch Zubat",
                 "completed": false
@@ -1467,443 +1352,386 @@ Status OK
     },
     {
         "userid": 190,
-        "username": "estella.marvin",
-        "primaryemail": "justin.west@hotmail.com",
+        "username": "angelo.hayes",
+        "primaryemail": "venetta.thompson@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 191,
+        "username": "andrew.green",
+        "primaryemail": "chong.macgyver@hotmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 191,
-                "description": "Catch Weezing",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 192,
-                "description": "Catch Venomoth",
+                "description": "Catch Clefable",
                 "completed": false
             }
         ]
     },
     {
         "userid": 193,
-        "username": "greg.crist",
-        "primaryemail": "heath.durgan@yahoo.com",
+        "username": "tamekia.cummerata",
+        "primaryemail": "madelyn.lemke@yahoo.com",
+        "todos": []
+    },
+    {
+        "userid": 194,
+        "username": "benny.strosin",
+        "primaryemail": "kandace.thompson@yahoo.com",
+        "todos": []
+    },
+    {
+        "userid": 195,
+        "username": "nu.kohler",
+        "primaryemail": "bettye.rath@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 196,
+        "username": "shirley.gislason",
+        "primaryemail": "herschel.purdy@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 194,
-                "description": "Catch Rattata",
+                "todoid": 197,
+                "description": "Catch Pidgeot",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 195,
-                "description": "Catch Pikachu",
+                "todoid": 198,
+                "description": "Catch Growlithe",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 196,
-        "username": "yee.cronin",
-        "primaryemail": "buck.watsica@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 197,
-        "username": "tyson.botsford",
-        "primaryemail": "carson.king@yahoo.com",
-        "todos": []
-    },
-    {
-        "userid": 198,
-        "username": "nu.bosco",
-        "primaryemail": "markita.stamm@hotmail.com",
-        "todos": []
-    },
-    {
         "userid": 199,
-        "username": "lionel.thiel",
-        "primaryemail": "raina.marquardt@gmail.com",
+        "username": "ashanti.okon",
+        "primaryemail": "burton.runolfsson@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 200,
+        "username": "janie.lang",
+        "primaryemail": "jaime.koelpin@yahoo.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 200,
-                "description": "Catch Kabuto",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 201,
-                "description": "Catch Beedrill",
+                "description": "Catch Seel",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:19",
                 "todoid": 202,
-                "description": "Catch Exeggutor",
+                "description": "Catch Gyarados",
                 "completed": false
             }
         ]
     },
     {
         "userid": 203,
-        "username": "tyler.wiegand",
-        "primaryemail": "lynsey.nader@hotmail.com",
-        "todos": []
-    },
-    {
-        "userid": 204,
-        "username": "patricia.beer",
-        "primaryemail": "brenton.flatley@hotmail.com",
+        "username": "audie.larkin",
+        "primaryemail": "toshiko.upton@hotmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 205,
-                "description": "Catch Vulpix",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 206,
-                "description": "Catch Hypno",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 207,
-        "username": "aura.macejkovic",
-        "primaryemail": "humberto.smith@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 208,
-                "description": "Catch Haunter",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 209,
-        "username": "jolie.strosin",
-        "primaryemail": "alec.schmeler@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 210,
-                "description": "Catch Vileplume",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 211,
-                "description": "Catch Machoke",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 212,
-        "username": "cecil.russel",
-        "primaryemail": "miguel.dickens@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 213,
-                "description": "Catch Kadabra",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 214,
-                "description": "Catch Psyduck",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 215,
-                "description": "Catch Gyarados",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 216,
-        "username": "austin.mccullough",
-        "primaryemail": "marc.bogisich@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 217,
-                "description": "Catch Pidgey",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 218,
-        "username": "rocky.romaguera",
-        "primaryemail": "taylor.pfeffer@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 219,
-                "description": "Catch Magneton",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 220,
-                "description": "Catch Magnemite",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 221,
-                "description": "Catch Mankey",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 222,
-        "username": "julie.bode",
-        "primaryemail": "sebastian.hills@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 223,
-                "description": "Catch Psyduck",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 224,
-        "username": "les.dicki",
-        "primaryemail": "lavada.grant@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 225,
-                "description": "Catch Pidgeot",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 226,
-                "description": "Catch Tangela",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 227,
-                "description": "Catch Oddish",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 228,
-        "username": "marc.wehner",
-        "primaryemail": "michelle.lynch@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 229,
+                "todoid": 204,
                 "description": "Catch Exeggutor",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 230,
-        "username": "jeannetta.parker",
-        "primaryemail": "jeremy.thiel@gmail.com",
+        "userid": 205,
+        "username": "james.graham",
+        "primaryemail": "lovie.rosenbaum@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 231,
-                "description": "Catch Victreebel",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 232,
-        "username": "clarisa.bogisich",
-        "primaryemail": "dorris.hilpert@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:19",
-                "todoid": 233,
-                "description": "Catch Mankey",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 234,
-                "description": "Catch Diglett",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 235,
-        "username": "jacquetta.hayes",
-        "primaryemail": "tracy.hilll@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 236,
-                "description": "Catch Jolteon",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 237,
-        "username": "connie.ebert",
-        "primaryemail": "dorian.von@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 238,
-                "description": "Catch Magikarp",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 239,
-                "description": "Catch Gyarados",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 240,
-        "username": "geoffrey.graham",
-        "primaryemail": "adolph.spencer@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 241,
-                "description": "Catch Horsea",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 242,
-                "description": "Catch Machop",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 243,
-                "description": "Catch Weedle",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 244,
-        "username": "cheree.franecki",
-        "primaryemail": "bettyann.halvorson@hotmail.com",
-        "todos": []
-    },
-    {
-        "userid": 245,
-        "username": "sharell.adams",
-        "primaryemail": "wei.dickens@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 246,
-                "description": "Catch Moltres",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 247,
-        "username": "carlos.zboncak",
-        "primaryemail": "ross.thompson@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 248,
-                "description": "Catch Dodrio",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 249,
-        "username": "fredrick.hammes",
-        "primaryemail": "lyndon.gorczany@yahoo.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 250,
-                "description": "Catch Nidorina",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 251,
-                "description": "Catch Venusaur",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 252,
-        "username": "kiana.mante",
-        "primaryemail": "isa.lind@gmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 253,
-                "description": "Catch Staryu",
-                "completed": false
-            },
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 254,
-                "description": "Catch Rhyhorn",
-                "completed": false
-            }
-        ]
-    },
-    {
-        "userid": 255,
-        "username": "lydia.schamberger",
-        "primaryemail": "roman.jakubowski@hotmail.com",
-        "todos": [
-            {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 256,
+                "todoid": 206,
                 "description": "Catch Pidgey",
                 "completed": false
             },
             {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 257,
-                "description": "Catch Nidorino",
+                "todoid": 207,
+                "description": "Catch Seaking",
                 "completed": false
             }
         ]
     },
     {
-        "userid": 258,
-        "username": "lavona.gerhold",
-        "primaryemail": "magan.price@hotmail.com",
+        "userid": 208,
+        "username": "virgil.cassin",
+        "primaryemail": "jeramy.bogan@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 209,
+        "username": "lilliana.hauck",
+        "primaryemail": "windy.purdy@gmail.com",
         "todos": [
             {
-                "createdDate": "2020-04-17 10:48:20",
-                "todoid": 259,
-                "description": "Catch Electabuzz",
+                "todoid": 210,
+                "description": "Catch Kingler",
+                "completed": false
+            },
+            {
+                "todoid": 211,
+                "description": "Catch Golbat",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 212,
+        "username": "dori.lockman",
+        "primaryemail": "roland.franecki@yahoo.com",
+        "todos": [
+            {
+                "todoid": 213,
+                "description": "Catch Clefable",
+                "completed": false
+            },
+            {
+                "todoid": 214,
+                "description": "Catch Vileplume",
+                "completed": false
+            },
+            {
+                "todoid": 215,
+                "description": "Catch Paras",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 216,
+        "username": "elmer.hermann",
+        "primaryemail": "sybil.klein@yahoo.com",
+        "todos": []
+    },
+    {
+        "userid": 217,
+        "username": "ana.ondricka",
+        "primaryemail": "liliana.gutkowski@gmail.com",
+        "todos": [
+            {
+                "todoid": 218,
+                "description": "Catch Vaporeon",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 219,
+        "username": "adrianna.rice",
+        "primaryemail": "charla.wintheiser@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 220,
+        "username": "lyndsey.kirlin",
+        "primaryemail": "jama.cassin@gmail.com",
+        "todos": [
+            {
+                "todoid": 221,
+                "description": "Catch Scyther",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 222,
+        "username": "norbert.gerhold",
+        "primaryemail": "krystyna.fahey@yahoo.com",
+        "todos": [
+            {
+                "todoid": 223,
+                "description": "Catch Golem",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 224,
+        "username": "tanja.leffler",
+        "primaryemail": "garry.ebert@yahoo.com",
+        "todos": []
+    },
+    {
+        "userid": 225,
+        "username": "chae.franecki",
+        "primaryemail": "marge.russel@gmail.com",
+        "todos": [
+            {
+                "todoid": 226,
+                "description": "Catch Pidgeot",
+                "completed": false
+            },
+            {
+                "todoid": 227,
+                "description": "Catch Koffing",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 228,
+        "username": "oliva.block",
+        "primaryemail": "lou.hammes@gmail.com",
+        "todos": [
+            {
+                "todoid": 229,
+                "description": "Catch Venusaur",
+                "completed": false
+            },
+            {
+                "todoid": 230,
+                "description": "Catch Wartortle",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 231,
+        "username": "malik.okeefe",
+        "primaryemail": "emerson.walter@hotmail.com",
+        "todos": [
+            {
+                "todoid": 232,
+                "description": "Catch Venomoth",
+                "completed": false
+            },
+            {
+                "todoid": 233,
+                "description": "Catch Eevee",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 234,
+        "username": "warner.kautzer",
+        "primaryemail": "freeman.moore@gmail.com",
+        "todos": [
+            {
+                "todoid": 235,
+                "description": "Catch Primeape",
+                "completed": false
+            },
+            {
+                "todoid": 236,
+                "description": "Catch Poliwag",
+                "completed": false
+            },
+            {
+                "todoid": 237,
+                "description": "Catch Zubat",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 238,
+        "username": "jarod.wunsch",
+        "primaryemail": "ettie.dubuque@yahoo.com",
+        "todos": []
+    },
+    {
+        "userid": 239,
+        "username": "darron.schimmel",
+        "primaryemail": "rasheeda.schoen@gmail.com",
+        "todos": [
+            {
+                "todoid": 240,
+                "description": "Catch Aerodactyl",
+                "completed": false
+            },
+            {
+                "todoid": 241,
+                "description": "Catch Articuno",
+                "completed": false
+            },
+            {
+                "todoid": 242,
+                "description": "Catch Dugtrio",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 243,
+        "username": "debbra.rowe",
+        "primaryemail": "gayla.howe@hotmail.com",
+        "todos": [
+            {
+                "todoid": 244,
+                "description": "Catch Charmeleon",
+                "completed": false
+            },
+            {
+                "todoid": 245,
+                "description": "Catch Tangela",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 246,
+        "username": "phil.fadel",
+        "primaryemail": "michal.jaskolski@yahoo.com",
+        "todos": [
+            {
+                "todoid": 247,
+                "description": "Catch Arbok",
+                "completed": false
+            },
+            {
+                "todoid": 248,
+                "description": "Catch Dragonite",
+                "completed": false
+            },
+            {
+                "todoid": 249,
+                "description": "Catch Vileplume",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 250,
+        "username": "joline.dibbert",
+        "primaryemail": "wilbur.gottlieb@gmail.com",
+        "todos": []
+    },
+    {
+        "userid": 251,
+        "username": "reanna.schmitt",
+        "primaryemail": "alex.hodkiewicz@gmail.com",
+        "todos": [
+            {
+                "todoid": 252,
+                "description": "Catch Venomoth",
+                "completed": false
+            }
+        ]
+    },
+    {
+        "userid": 253,
+        "username": "candis.skiles",
+        "primaryemail": "santiago.wolff@hotmail.com",
+        "todos": []
+    },
+    {
+        "userid": 254,
+        "username": "russell.harris",
+        "primaryemail": "kiersten.dickinson@gmail.com",
+        "todos": []
+    },
+    {
+        "userid": 255,
+        "username": "sammy.kozey",
+        "primaryemail": "nicholas.quigley@hotmail.com",
+        "todos": [
+            {
+                "todoid": 256,
+                "description": "Catch Paras",
                 "completed": false
             }
         ]
@@ -1912,8 +1740,6 @@ Status OK
 ```
 
 </details>
-
-[PDF of Swagger Documentation from http://localhost:2019/swagger-ui.html](https://drive.google.com/open?id=1GMbkcalznXWzuItP4GfmuF7uUj9jftWM)
 
 ### Commits
 
@@ -1934,7 +1760,7 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 - [ ] Add your team lead as collaborator on Github
 - [ ] Clone your OWN version of the repository (Not Lambda's by mistake!)
 - [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
-- [ ] Create a new Java Spring Application using IntelliJ.
+- [ ] Start with the provided todo application
 - [ ] Push commits: `git push origin <firstName-lastName>`
 - [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly
 - [ ] Push commits: git push origin `<firstName-lastName>`
@@ -1943,40 +1769,27 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 You will be creating a REST api service to store and read data from an H2 database.
 
-- [ ] Please fork and clone this repository. This repository does not have a starter project, so create one inside of the cloned repository folder. Regularly commit and push your code as appropriate.
+- [ ] Please fork and clone this repository. This repository has a starting application called todos. You must start working from there. Regularly commit and push your code as appropriate.
 
-- [ ] Create the models, repositories, and services needed to model the following suggested table layout:
-
-- Note these are the minimum fields required. More is okay.
+- [ ] The initial application contains the model for the users table. Endpoints are already created and the structure for auditiong fields is in place. You are adding the model for the todos table and updating the services to work with the new table.
 
 - [ ] TODOS
   - `todoid` primary key, not null long
   - `description` string, not null
   - `completed` boolean. Note that for all new todos, default completed to false
   - `userid` foreign key (one user to many todos) not null
-  - any time TODOS are displayed, the created on auditing field should also be displayed!
-
-- [ ] USERS
-  - `userid` primary key, not null long
-  - `username` string, not null unique, always lower case
-  - `primaryemail` string, not null unique
-  - `password` string, not null. This will be stored in plain text for now.
-
-- [ ] Notes:
-  - USERS have a one to many relationship with TODOS.
   - All tables must have the standard 4 auditing fields in place and working, being populated: created on, created by, last modified on, last modified by. The auditing usernames will all default to `llama`.
+  - USERS have a one to many relationship with TODOS.
 
-- [ ] SeedData.java is a sample script that can be modified to populate the database. However, this is the seed data to use for this application. The structure can change, the data should not change. Do populate the database with this data.
+- [ ] SeedData.java is a sample class that can be modified to populate the database. However, this is the seed data to use for this application. The structure can change, the data should not change. Do populate the database with this data.
 
-- [ ] For all dates use the format `yyyy-MM-dd HH:mm:ss` so `2020-04-15 23:59:59`
+The following end points are already available in the initial application. You are to make sure the end points work with the newly added todos table
 
-Expose the following end points
+- [ ] GET /users/users - return all of the users and their todos. If the todos table is added correctly, the Controller, Service, and Repository for this end point should not change!
 
-- [ ] GET /users/users - return all of the users and their todos
+- [ ] GET /users/user/{userid} - return the user and their todos based off of user id. If the todos table is added correctly, the Controller, Service, and Repository for this end point should not change!
 
-- [ ] GET /users/user/{userid} - return the user and their todos based off of id
-
-- [ ] POST /users/user - adds a user.
+- [ ] POST /users/user - adds a user with their todos
 
   You can use the following to test this!
 
@@ -1996,25 +1809,9 @@ Expose the following end points
   }
   ```
 
-  </details>
-
-- [ ] POST /todos/user/{userid} - adds a todo to the user.
-
-  You can use the following to test this!
-
-  ```JSON
-  {
-    "description": "Make coffee"
-  }
-  ```
-
 - [ ] PATCH /todos/todo/{todoid} - mark a todo as completed.
 
-- [ ] DELETE /users/userid/{userid} - Deletes a user based off of their userid and deletes all their associated todos.
-
-- [ ] GET /users/users/todos - lists the number of todos each user has that are NOT completed. Use a custom query to accomplish this!
-  - Users with 0 todos do NOT have to be included in the list
-  - Order the list by username!
+- [ ] DELETE /users/user/{userid} - Deletes a user based off of their userid and deletes all their associated todos. If the todos table is added correctly, the Controller, Service, and Repository for this end point should not change!
 
 ### Required best practices
 
@@ -2028,14 +1825,12 @@ It is better to submit a challenge that meets [MVP](https://en.wikipedia.org/wik
 
 ### Tips and Gotchas
 
-A very important hint: start with the [usermodel repository](https://github.com/LambdaSchool/java-usermodel.git). Note that in that repository the User table as a one to many relationship with useremails. The project does not need useremails but does need a one to many relationship with todos. Think about how you can update the useremails to work as todos instead...
-
 In your solution, it is essential that you follow best practices and produce clean and professional results. You will be scored on your adherence to proper code style and good organization. Schedule time to review, refine, and assess your work and perform basic professional polishing including spell-checking and grammar-checking on your work. It is better to submit a challenge that meets MVP than one that attempts too much and does not.
 
 ### Task 3: Stretch Goals
 
-- [ ] Add the endpoint GET /users/user/{username}/todos - returns in created date (from auditing fields) order all of the todos that have not yet been completed for the user with the given the username. In other words, what does this user still need to do?
+- [ ] GET /users/users/todos - lists the number of todos each user has that are NOT completed. Use a custom query to accomplish this!
+  - Users with 0 todos do NOT have to be included in the list
+  - Order the list by username!
   
 - [ ] Add in 100 more random users each with a random number (0 - 3) of random todos. The todos descriptions should be something random as well. For my example, I picked Pokemon names!
-  
-- [ ] Add Default Swagger Documentation

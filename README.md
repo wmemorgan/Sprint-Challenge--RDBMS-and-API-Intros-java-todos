@@ -1769,11 +1769,11 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
 
 You will be creating a REST api service to store and read data from an H2 database.
 
-- [ ] Please fork and clone this repository. This repository has a starting application called todos. You must start working from there. Regularly commit and push your code as appropriate.
+- [x] Please fork and clone this repository. This repository has a starting application called todos. You must start working from there. Regularly commit and push your code as appropriate.
 
-- [ ] The initial application contains the model for the users table. Endpoints are already created and the structure for auditiong fields is in place. You are adding the model for the todos table and updating the services to work with the new table.
+- [x] The initial application contains the model for the users table. Endpoints are already created and the structure for auditiong fields is in place. You are adding the model for the todos table and updating the services to work with the new table.
 
-- [ ] TODOS
+- [x] TODOS
   - `todoid` primary key, not null long
   - `description` string, not null
   - `completed` boolean. Note that for all new todos, default completed to false
@@ -1781,15 +1781,15 @@ You will be creating a REST api service to store and read data from an H2 databa
   - All tables must have the standard 4 auditing fields in place and working, being populated: created on, created by, last modified on, last modified by. The auditing usernames will all default to `llama`.
   - USERS have a one to many relationship with TODOS.
 
-- [ ] SeedData.java is a sample class that can be modified to populate the database. However, this is the seed data to use for this application. The structure can change, the data should not change. Do populate the database with this data.
+- [x] SeedData.java is a sample class that can be modified to populate the database. However, this is the seed data to use for this application. The structure can change, the data should not change. Do populate the database with this data.
 
 The following end points are already available in the initial application. You are to make sure the end points work with the newly added todos table
 
-- [ ] GET /users/users - return all of the users and their todos. If the todos table is added correctly, the Controller, Service, and Repository for this end point should not change!
+- [x] GET /users/users - return all of the users and their todos. If the todos table is added correctly, the Controller, Service, and Repository for this end point should not change!
 
-- [ ] GET /users/user/{userid} - return the user and their todos based off of user id. If the todos table is added correctly, the Controller, Service, and Repository for this end point should not change!
+- [x] GET /users/user/{userid} - return the user and their todos based off of user id. If the todos table is added correctly, the Controller, Service, and Repository for this end point should not change!
 
-- [ ] POST /users/user - adds a user with their todos
+- [x] POST /users/user - adds a user with their todos
 
   You can use the following to test this!
 

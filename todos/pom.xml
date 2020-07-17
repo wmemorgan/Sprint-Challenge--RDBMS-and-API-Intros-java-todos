@@ -12,10 +12,10 @@
     <artifactId>todos</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>todos</name>
-    <description>Demo project for Spring Boot</description>
+    <description>SPRINT CHALLENGE: RDBMS and API Intros</description>
 
     <properties>
-        <java.version>14</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>
